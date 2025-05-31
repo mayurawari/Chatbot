@@ -1,0 +1,222 @@
+// Script: Chatbot Training Script (Login, Logout, Register - Role Based)
+// Roles: Student, Teacher, HOD, Principal, Admin, Superadmin
+
+// Note: This script is written as if you're training a chatbot to answer questions and help users
+// with registration, login, logout, and role-based access. Each section will include intents,
+// examples, responses, and context management instructions.
+
+// --- INTENTS ---
+
+// 1. Register
+Intent: register_user
+Examples:
+- I want to register
+- Sign me up as a student
+- Register me as a teacher
+- Create an account for me
+- I need to sign up
+- I want to create an account as HOD
+- Please register me as the Principal
+- How do I register as an admin?
+- Can you help me register as a superadmin?
+Responses:
+- Sure, please provide your full name, email, and choose a role from student, teacher, HOD, principal, admin, or superadmin.
+- I can help you register. What's your name, email address, and preferred role?
+Context Set:
+- action: register
+
+// 2. Provide Registration Details
+Intent: provide_registration_details
+Examples:
+- My name is Arjun Sharma, email arjun@example.com, role student
+- Name: Rina, Email: rina@school.edu, Role: teacher
+- It's Anil, anil@college.com, I want to be registered as principal
+Responses:
+- Thanks {name}, your registration as a {role} is being processed.
+- {name}, you've been registered as a {role}. You can now log in.
+Context Needed:
+- action: register
+Actions:
+- Save user info
+- Trigger verification (email/OTP)
+
+// 3. Login
+Intent: login_user
+Examples:
+- I want to login
+- Let me in
+- Log me into my account
+- I need to sign in
+- Can I log in as a teacher?
+- Sign me in as student
+Responses:
+- Sure, please provide your registered email and password.
+Context Set:
+- action: login
+
+// 4. Provide Login Credentials
+Intent: provide_login_credentials
+Examples:
+- Email is ravi@school.com and password is Ravi@123
+- Use my email anita@college.org and password Anita#456
+Responses:
+- Logging you in...
+- Verifying credentials...
+Context Needed:
+- action: login
+Actions:
+- Validate email/password
+- Return success or failure with role context
+
+// 5. Login Success
+Intent: login_success
+Examples:
+- Welcome Ravi! You are logged in as Teacher.
+- Login successful. Role: Admin.
+Responses:
+- Welcome {name}, you're now logged in as {role}.
+- Hello {name}, your {role} dashboard is ready.
+
+// 6. Login Failure
+Intent: login_failed
+Examples:
+- Invalid email or password
+- Your credentials don’t match
+Responses:
+- Sorry, the login failed. Please check your email and password.
+- Invalid credentials. Try again or reset your password.
+
+// 7. Logout
+Intent: logout_user
+Examples:
+- Logout
+- Sign me out
+- I want to log out
+- End my session
+Responses:
+- You've been logged out successfully.
+- Your session has ended. Come back anytime!
+Actions:
+- Destroy session/token
+
+// 8. Role-Specific Questions
+
+// Student
+Intent: student_help
+Examples:
+- What can I do as a student?
+- I'm a student, how do I submit homework?
+Responses:
+- As a student, you can view and submit assignments, join live classes, and check grades.
+- Students have access to course material, submissions, and announcements.
+
+// Teacher
+Intent: teacher_help
+Examples:
+- What can a teacher do?
+- I'm a teacher, what features are available?
+Responses:
+- As a teacher, you can create assignments, conduct live classes, and grade students.
+- Teachers manage student submissions and interact with parents.
+
+// HOD
+Intent: hod_help
+Examples:
+- What access does HOD have?
+- I'm the HOD, what can I do?
+Responses:
+- As HOD, you can monitor teachers, approve content, and review department progress.
+- HODs oversee academic activities and manage departmental data.
+
+// Principal
+Intent: principal_help
+Examples:
+- What is the role of a principal?
+- I'm the principal, what are my responsibilities?
+Responses:
+- Principals oversee all school operations, approve staff roles, and manage critical policies.
+- As principal, you can view all academic and administrative reports.
+
+// Admin
+Intent: admin_help
+Examples:
+- What does an admin do?
+- Admin privileges?
+Responses:
+- Admins manage users, roles, system settings, and ensure platform integrity.
+- You can add or remove users, manage roles, and moderate activities.
+
+// Superadmin
+Intent: superadmin_help
+Examples:
+- I’m a superadmin, what are my powers?
+- What can I control as a superadmin?
+Responses:
+- As superadmin, you have unrestricted access to the entire platform and can control all operations.
+- Superadmins manage security, databases, logs, and system-wide configuration.
+
+// 9. Forgot Password
+Intent: forgot_password
+Examples:
+- I forgot my password
+- Can I reset my password?
+- Help me recover my login credentials
+Responses:
+- Sure, please enter your registered email to receive reset instructions.
+- I’ll send a password reset link to your email.
+Actions:
+- Trigger password reset email
+
+// 10. Role Upgrade Request
+Intent: request_role_upgrade
+Examples:
+- I want to become a teacher
+- Can I switch my role to admin?
+- Upgrade my account to HOD
+Responses:
+- Role upgrade requests are reviewed manually. Please wait while we submit your request.
+- Your request to become a {new_role} is being processed.
+Actions:
+- Submit role upgrade request
+- Notify admin/superadmin
+
+// --- FOLLOW-UP FLOWS ---
+
+// Registration Follow-up
+If user registers, ask:
+- “Would you like to log in now?”
+If yes, move to login flow
+
+// Login Follow-up
+After successful login:
+- “Do you want help using your dashboard?”
+
+// Logout Follow-up
+After logout:
+- “Would you like to log in again or register a new account?”
+
+// Role Upgrade Follow-up
+After requesting role change:
+- “You will be notified once the request is approved.”
+
+// --- SMALL TALK ADDITIONS ---
+Intent: greetings
+Examples:
+- Hi
+- Hello
+- Good morning
+Responses:
+- Hello! How can I help you today?
+- Hi there! Looking to register or log in?
+
+Intent: thanks
+Examples:
+- Thanks
+- Thank you
+- Appreciate it
+Responses:
+- You're welcome!
+- Anytime! Let me know if you need anything else.
+
+// Repeat this pattern for ~2000 lines by expanding example variations, role questions, and error cases.
+// Include multilingual versions (Hindi, etc.), chatbot clarification questions, fallback intents, etc.
