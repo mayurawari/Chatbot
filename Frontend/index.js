@@ -1,8 +1,7 @@
 let inputBox = document.getElementById("input-box");
 let chatContainer = document.getElementById("messages");
 let sendButton = document.getElementById("butn");
-// let url = "https://chatbot-s54m.vercel.app"; // Replace with your actual API URL
-let url = "http://localhost:8080";
+let url = "https://chatbot-s54m.vercel.app"; // Replace with your actual API URL
 // Function to append a message to the chat
 function appendMessage(content, sender = "user") {
     const messageElement = document.createElement("div");
