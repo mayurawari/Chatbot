@@ -41,6 +41,6 @@ Welcome to the **Custom AI Chatbot** project! This chatbot is powered by advance
 
 ## Get Started
 
-1. Visit the deployed version of the chatbot [here](https://chatbot-inky-eight-90.vercel.app/).
+1. Visit the deployed version of the chatbot [here](https://chatbot-chi-gold.vercel.app/).
 2. Type a question or command into the input box and interact with the chatbot.
 3. Enjoy a seamless and personalized conversational experience powered by custom data and AI!
